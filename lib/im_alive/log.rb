@@ -1,5 +1,6 @@
 require 'rest_client'
 require 'json'
+require 'pry'
 
 module ImAlive
   class Log
@@ -10,7 +11,7 @@ module ImAlive
     end
 
     def send
-      RestClient.put(url, payload.to_json)
+      client.put(url, payload.to_json)
     rescue RestClient::Exception
     end
 
@@ -19,8 +20,12 @@ module ImAlive
     attr_reader :task, :app, :url
 
     def rev
-      payload = RestClient.get(url)
+      payload = client.get(url)
       JSON.parse(payload)['_rev']
+    end
+
+    def client
+      RestClient
     end
 
     def payload
