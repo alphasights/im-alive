@@ -1,6 +1,5 @@
 require 'rest_client'
 require 'json'
-require 'pry'
 
 module ImAlive
   class Log
@@ -12,7 +11,6 @@ module ImAlive
 
     def send
       client.put(url, payload.to_json)
-    rescue RestClient::Exception
     end
 
     private
