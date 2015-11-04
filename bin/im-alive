@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/im_alive.rb'
+
+unless ARGV[1]
+  puts "Provide DB document URL"
+  puts "Example: imalive https://user.@pass.heroku.cloudant.com/backups birdie_weekly"
+  exit -1
+end
+
+logger = ImAlive::Log.new(ARGV[0], ARGV[1])
+logger.send

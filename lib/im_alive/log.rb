@@ -1,39 +1,44 @@
-require 'rest_client'
-require 'json'
+require 'couchrest'
 
 module ImAlive
   class Log
-    def initialize(task: task, app: app, url: url)
-      @task = task
-      @app = app
-      @url = url
+    def initialize(db, document_path)
+      @db = db
+      @document_path = document_path
     end
 
     def send
-      client.put(url, payload.to_json)
+      client.put(document_url, payload)
     end
 
     private
 
-    attr_reader :task, :app, :url
+    attr_reader :db, :document_path
 
-    def rev
-      payload = client.get(url)
-      JSON.parse(payload)['_rev']
+    def document_url
+      "#{db}/#{document_path}"
     end
 
+
     def client
-      RestClient
+      CouchRest
     end
 
     def payload
-      {
-        "_rev" => rev,
-        "app"=> app,
+      timestamps = {
         "timestamp"=> Time.now.to_s,
         "js_timestamp" => Time.now.to_i,
-        "task" => task
       }
+      timestamps.merge!("_rev" => rev) if rev
+      timestamps
     end
+
+    def rev
+      payload = client.get(document_url)
+      payload['_rev']
+    rescue RestClient::ResourceNotFound
+      nil
+    end
+
   end
 end
