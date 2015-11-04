@@ -3,7 +3,7 @@
 require_relative '../lib/im_alive.rb'
 
 unless ARGV[1]
-  puts "Provide DB document URL"
+  puts "Provide DB document URL and document key (id)"
   puts "Example: imalive https://user.@pass.heroku.cloudant.com/backups birdie_weekly"
   exit -1
 end

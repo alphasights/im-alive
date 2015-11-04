@@ -2,42 +2,34 @@ require 'couchrest'
 
 module ImAlive
   class Log
-    def initialize(db, document_path)
-      @db = db
-      @document_path = document_path
+    def initialize(db_uri, document_id)
+      @db_uri = db_uri
+      @document_id = document_id
     end
 
     def send
-      client.put(document_url, payload)
+      doc = begin
+        db.get(document_id)
+      rescue CouchRest::NotFound
+        {'_id' => document_id}
+      end
+      doc.merge!(timestamps)
+      db.save_doc(doc)
     end
 
     private
 
-    attr_reader :db, :document_path
+    attr_reader :db_uri, :document_id
 
-    def document_url
-      "#{db}/#{document_path}"
+    def db
+      @db ||= CouchRest.database!(db_uri)
     end
 
-
-    def client
-      CouchRest
-    end
-
-    def payload
-      timestamps = {
-        "timestamp"=> Time.now.to_s,
+    def timestamps
+      {
+        "timestamp" => Time.now.to_s,
         "js_timestamp" => Time.now.to_i,
       }
-      timestamps.merge!("_rev" => rev) if rev
-      timestamps
-    end
-
-    def rev
-      payload = client.get(document_url)
-      payload['_rev']
-    rescue RestClient::ResourceNotFound
-      nil
     end
 
   end
