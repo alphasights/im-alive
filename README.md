@@ -6,7 +6,7 @@ The timestamp information that is written is:
 
 `{"timestamp" => "2015-02-01 00:00:00 UTC", "js_timestamp" => 1422748800}`
 
-CouchDB documents can be acessed through HTTP Get, no special tooling is required to read the values back out, you can use Curl, do it from JS in a web page, from any programming language you can think of etc etc. 
+CouchDB documents can be acessed through HTTP GET request, no special tooling is required to read the values back out, you can use Curl, do it from JS in a web page, from any programming language you can think of etc etc. 
 
 ## Installation
 
