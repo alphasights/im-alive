@@ -1,31 +1,16 @@
 # Im::Alive
 
-TODO: Write a gem description
+Post timestamps to a CouchDB database document. Useful for sending heartbeat signals or proving that a certain operation took place when it was supposed to. Since CouchDB documents can be acessed through HTTP Get, no special tooling is required to read the values back out, you can use Curl, do it from JS in a web page, from any programming language you can think of etc etc. 
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'im-alive'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install im-alive
+gem install im-alive
 
 ## Usage
 
-TODO: Write usage instructions here
+`im-alive https://username@password.heroku.cloudant.com/backups weekly`
 
-## Contributing
-
-1. Fork it ( https://github.com/alphasights/im-alive/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+of which 
+`https://username@password.heroku.cloudant.com` is the URL of the CouchDB instance
+`backups` is the name of the CouchDB database. The database will be automatically created if it doesn't exist.
+`weekly` it the name of the document to write the timestamps to. The document is created if it doesn't exist.
