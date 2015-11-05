@@ -27,8 +27,8 @@ module ImAlive
 
     def timestamps
       {
-        "timestamp" => Time.now.to_s,
-        "js_timestamp" => Time.now.to_i,
+        "timestamp" => Time.now.utc.to_s,
+        "js_timestamp" => Time.now.utc.to_i,
       }
     end
 
