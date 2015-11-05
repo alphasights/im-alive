@@ -1,6 +1,6 @@
 # Im::Alive
 
-Post timestamps to a CouchDB database document. Useful for sending heartbeat signals or proving that a certain operation took place when it was supposed to. 
+Post timestamps to a CouchDB database document. Useful for sending heartbeat signals or proving that an operation took place when it was supposed to. 
 
 The timestamp information that is written is: 
 
