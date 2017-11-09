@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "minitest", "~> 5.5"
   spec.add_development_dependency "timecop"
+  spec.add_development_dependency "rake"
 
   spec.add_runtime_dependency "couchrest", ["~> 2.0.0.rc2"]
 end
