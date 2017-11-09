@@ -9,7 +9,7 @@ module ImAlive
 
     def send
       doc = begin
-        db.get(document_id)
+        db.get!(document_id)
       rescue CouchRest::NotFound
         {'_id' => document_id}
       end
