@@ -20,3 +20,7 @@ of which
 - `https://username@password.heroku.cloudant.com` is the URL of the CouchDB instance
 - `backups` is the name of the CouchDB database. The database will be automatically created if it doesn't exist.
 - `weekly` it the name of the document to write the timestamps to. The document is created if it doesn't exist.
+
+## Development
+
+Install the dependencies with `bundle install`, and run the tests with `bundle exec rake`.
